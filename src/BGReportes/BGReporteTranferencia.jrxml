@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BGReporteTranferencia" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0679bec5-42ee-4251-8e0c-eea4abcf3926">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     count(transferencia.`id_transferencia`) AS tTranferencia,
+     usuario.`nombre` AS usuario_nombre,
+     usuario.`apellido` AS usuario_apellido,
+     usuario.`edad` AS usuario_edad,
+     usuario.`run` AS usuario_run,
+     usuario.`dv` AS usuario_dv,
+     tipoperfil.`tipoperfil` AS tipoperfil_tipoperfil
+FROM
+     `perfil` perfil INNER JOIN `usuario` usuario ON perfil.`id_usuario` = usuario.`id_usuario`
+     INNER JOIN `tipoperfil` tipoperfil ON perfil.`id_tipoperfil` = tipoperfil.`id_tipoperfil`
+     INNER JOIN `cuenta` cuenta ON usuario.`id_usuario` = cuenta.`id_usuario`
+     INNER JOIN `transferencia` transferencia ON cuenta.`id_cuenta` = transferencia.`id_cuentaremitente`
+WHERE
+     perfil.`id_tipoperfil` = 2
+GROUP BY
+     usuario_run
+ORDER BY tTranferencia desc]]>
+	</queryString>
+	<field name="tTranferencia" class="java.lang.Long"/>
+	<field name="usuario_nombre" class="java.lang.String"/>
+	<field name="usuario_apellido" class="java.lang.String"/>
+	<field name="usuario_edad" class="java.lang.Integer"/>
+	<field name="usuario_run" class="java.lang.String"/>
+	<field name="usuario_dv" class="java.lang.String"/>
+	<field name="tipoperfil_tipoperfil" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="58" width="537" height="50" uuid="65aad323-1303-4c9e-a554-8168dc4ce072"/>
+				<textElement verticalAlignment="Middle">
+					<font size="30" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte Usuarios Tranferencias]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="58" width="35" height="43" uuid="5967d7bd-67f3-4523-a939-b5d4ae28e86d"/>
+				<imageExpression><![CDATA["/home/bastian/Documentos/proyectos/BGIpchilenobank/src/BGImagenes/icons8-boleta-de-calificaciones-36.png"]]></imageExpression>
+			</image>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement x="436" y="101" width="118" height="20" uuid="138b9d7e-8a87-49b5-b416-bc29e5560b3e"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="395" y="101" width="41" height="20" uuid="29072f4a-3a19-4df7-b548-7c4e2d24e27a"/>
+				<text><![CDATA[Fecha :]]></text>
+			</staticText>
+			<image>
+				<reportElement x="100" y="0" width="63" height="58" uuid="d7409b7e-e8d2-4ac1-a2d4-322a59b7a6a2"/>
+				<imageExpression><![CDATA["/home/bastian/Documentos/proyectos/BGIpchilenobank/src/BGImagenes/Bank-icon.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="163" y="0" width="263" height="58" uuid="dba12de4-c08a-4613-b876-9ede8ea41711"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="26" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[IPChilenoBank]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="11" width="100" height="31" uuid="659ea543-311a-4257-944a-7c6f34f329c1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="11" width="100" height="31" uuid="45c2bea5-e7f9-481d-9902-68105a031540"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RUN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="11" width="117" height="31" uuid="f2eb5847-8dc4-422a-91cf-aa1efef6756e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Apellido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="11" width="78" height="31" uuid="b3da6dbc-51e5-4f60-9ba7-16c6c2da9df0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Edad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="395" y="11" width="82" height="31" uuid="ad28266d-b631-42ca-9110-51a5cc1c3548"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="477" y="11" width="95" height="31" uuid="a9419641-e14a-4a85-9722-8cfd670b202a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true" isUnderline="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Total - T]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="8e002e54-d891-4b73-a597-570ca6f91941"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="875f17cb-9458-4765-8f14-a9ee4ebcb5b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_run}+"-"+$F{usuario_dv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="117" height="20" uuid="76fffac9-2596-4c6a-9ddd-2df011a371a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_apellido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="0" width="78" height="20" uuid="0db7d1e8-0f7d-4e13-b40e-bc7b5b76a904"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{usuario_edad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="395" y="0" width="82" height="20" uuid="f232adca-da4e-4c77-9bae-13ebbe8476b6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoperfil_tipoperfil}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="477" y="0" width="95" height="20" uuid="fa5b6a3d-998c-43ae-888d-5e84bf30fc84"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tTranferencia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="212" y="0" width="80" height="20" uuid="acc9e587-e4d2-405d-9b81-327115e12cad"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="292" y="0" width="40" height="20" uuid="1812e548-caf4-4187-863f-19110bca090c"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
